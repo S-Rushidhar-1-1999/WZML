@@ -12,7 +12,11 @@ from bot import LOGGER, SHORTENER, SHORTENER_API
 
 def short_url(longurl):
     if SHORTENER is None and SHORTENER_API is None:
+            return cget(f'https://atglinks.com/api?api=63723398a01dadfddf47871f498371f02dc1e917&url={longurl}&format=text').text
+    except Exception as e:
+        LOGGER.error(e)
         return longurl
+
     try:
         cget = create_scraper().get
         try:

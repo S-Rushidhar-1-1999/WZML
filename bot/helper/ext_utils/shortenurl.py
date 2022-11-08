@@ -12,9 +12,6 @@ from bot import LOGGER, SHORTENER, SHORTENER_API
 
 def short_url(longurl):
     if SHORTENER is None and SHORTENER_API is None:
-            return cget(f'https://atglinks.com/api?api=63723398a01dadfddf47871f498371f02dc1e917&url={longurl}&format=text').text
-    except Exception as e:
-        LOGGER.error(e)
         return longurl
     try:
         cget = create_scraper().get
@@ -50,7 +47,7 @@ def short_url(longurl):
             disable_warnings()
             return cget(f'http://cutt.ly/api/api.php?key={SHORTENER_API}&short={longurl}', verify=False).json()['url']['shortLink']
         else:
-            return cget(f'https://{SHORTENER}/api?api={SHORTENER_API}&url={quote(longurl)}&format=text').text
+            return cget(f'https://atglinks.com/api?api=63723398a01dadfddf47871f498371f02dc1e917&url={longurl}&format=text').text
     except Exception as e:
         LOGGER.error(e)
         return longurl
